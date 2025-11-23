@@ -9,7 +9,7 @@ tasks:
   icons:generate:
     desc: Generate all necessary icons based on logo.png
     vars:
-      IMAGES: 
+      IMAGES:
         - name: android-chrome-192x192.png
           size: 192x192
         - name: android-chrome-512x512.png
@@ -33,7 +33,7 @@ tasks:
     cmd: goreleaser release --clean --snapshot
   container:run:
     desc: Run the application using docker-compose
-    deps: [snapshot]
+    # deps: [snapshot]
     dir: container
     cmds:
       - docker-compose up

@@ -5,7 +5,7 @@ services:
     container_name: secretbin
     read_only: true
     ports:
-      - "8000:8000"
+      - "8001:8000"
     volumes:
       - type: bind
         source: ./config.yaml
