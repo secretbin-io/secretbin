@@ -74,7 +74,7 @@ export function ViewSecret({ id, state, remainingReads, passwordProtected }: Vie
 		// Try to decrypt the secret
 		try {
 			setLoading(true)
-			const data = await decryptSecret(sec, password)
+			const data = await decryptSecret(sec, password.trim())
 			setLoading(false)
 			setSecretContent(data)
 			return

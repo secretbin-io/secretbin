@@ -53,7 +53,7 @@ export function NewSecret({ state }: NewSecretProps): ComponentChild {
 			const res = await submitSecret(
 				message,
 				files,
-				password,
+				password.trim(),
 				{ expires: expires.value, burn: burn.value, slowBurn: slowBurn.value, rereads: rereads.value },
 				state.config.policy.encryptionAlgorithm,
 			)
