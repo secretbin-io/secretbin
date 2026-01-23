@@ -19,6 +19,8 @@ services:
       - type: bind
         source: ./public
         target: /app/public
+    extra_hosts:
+      - "postgres:host-gateway"
     networks:
       - secretbin
 

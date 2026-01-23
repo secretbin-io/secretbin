@@ -83,7 +83,7 @@
     "registry": "jsr",
     "name": "@nick/clsx",
     "repository": "https://github.com/nberlette/clsx",
-    "author": "Nick Berlette",
+    "author": "Nicholas Berlette",
     "license": "MIT License",
     "licenseFile": "https://raw.githubusercontent.com/nberlette/clsx/main/LICENSE"
   },
