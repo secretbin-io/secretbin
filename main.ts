@@ -5,8 +5,6 @@ import { config } from "server/config"
 import { loggingMiddleware, publicFiles, stateMiddleware } from "utils/middleware"
 import { State } from "utils/state"
 
-import "utils/errors/patch"
-
 export const app = new App<State>()
 if (await fs.exists("./public")) {
 	app.use(publicFiles())

@@ -6,7 +6,7 @@ before:
   hooks:
     - deno task icons:generate
     - deno task build
-  
+
 builds:
   - builder: deno
     targets:
@@ -46,7 +46,7 @@ archives:
 
 dockers_v2:
   - id: secretbin
-    dockerfile: Dockerfile
+    dockerfile: container/Dockerfile
     images: ["ghcr.io/secretbin-io/secretbin"]
     tags:
       - "{{ .Version }}"

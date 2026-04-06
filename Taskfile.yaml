@@ -31,9 +31,19 @@ tasks:
   snapshot:
     desc: "Build but not release using GoReleaser"
     cmd: goreleaser release --clean --snapshot
+  db:start:
+    desc: Start the database using docker-compose
+    dir: container
+    cmds:
+      - docker-compose up -d postgres
+  db:stop:
+    desc: Stop the database using docker-compose
+    dir: container
+    cmds:
+      - docker-compose stop postgres
   container:run:
     desc: Run the application using docker-compose
     deps: [snapshot]
     dir: container
     cmds:
-      - docker-compose up
+      - docker-compose up secretbin

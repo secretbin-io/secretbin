@@ -19,7 +19,6 @@ COPY --from=cc --chown=root:root --chmod=755 /lib/ld-linux-* /lib/
 COPY --from=cc --chown=root:root --chmod=755 /lib6?/ld-linux-* /lib64/
 ENV LD_LIBRARY_PATH="/usr/local/lib"
 
-
 # Use an unprivileged user.
 USER 1001:1001
 

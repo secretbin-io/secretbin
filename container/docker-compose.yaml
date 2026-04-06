@@ -1,0 +1,61 @@
+name: secretbin
+services:
+  postgres:
+    image: postgres:18
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=abc123
+      - POSTGRES_USER=secretbin
+      - POSTGRES_DB=secretbin
+    volumes:
+      - type: bind
+        source: ./postgres/tls/ca.crt
+        target: /etc/postgresql/ca.crt
+      - type: bind
+        source: ./postgres/server.crt
+        target: /etc/postgresql/server.crt
+      - type: bind
+        source: ./postgres/tls/server.key
+        target: /etc/postgresql/server.key
+      - pgdata:/var/lib/postgresql
+    command:
+      - postgres
+      - -c
+      - ssl=on
+      - -c
+      - ssl_ca_file=/etc/postgresql/ca.crt
+      - -c
+      - ssl_cert_file=/etc/postgresql/server.crt
+      - -c
+      - ssl_key_file=/etc/postgresql/server.key
+
+  secretbin:
+    image: ghcr.io/secretbin-io/secretbin:latest-arm64
+    container_name: secretbin
+    read_only: true
+    ports:
+      - "8001:8000"
+    volumes:
+      - type: bind
+        source: ../config.yaml
+        target: /app/config.yaml
+      - type: bind
+        source: ../config.db.yaml
+        target: /app/config.db.yaml
+      - type: bind
+        source: ../resources
+        target: /app/resources
+      - type: bind
+        source: ../public
+        target: /app/public
+    extra_hosts:
+      - "postgres:host-gateway"
+    networks:
+      - secretbin
+
+volumes:
+  pgdata:
+
+networks:
+  secretbin:
