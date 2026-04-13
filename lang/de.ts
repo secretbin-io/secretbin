@@ -177,7 +177,7 @@ export default {
 			},
 			SecretNotFoundError: {
 				Title: "SecretNotFoundError",
-				Message: "Ein Geheimnis mit der ID {{id}} wurde nicht gefunden.",
+				Message: "Ein Geheimnis mit der ID {{id}} wurde nicht gefunden. Es könnte abgelaufen oder bereits aufgerufen worden sein.",
 			},
 			SecretAlreadyExistsError: {
 				Title: "SecretAlreadyExistsError",

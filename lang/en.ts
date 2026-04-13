@@ -173,7 +173,7 @@ export default {
 			},
 			SecretNotFoundError: {
 				Title: "SecretNotFoundError",
-				Message: "A secret with the ID {{id}} does not exist.",
+				Message: "A secret with the ID {{id}} does not exist. It may have expired or already been accessed.",
 			},
 			SecretAlreadyExistsError: {
 				Title: "SecretAlreadyExistsError",
