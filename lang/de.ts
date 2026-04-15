@@ -177,7 +177,12 @@ export default {
 			},
 			SecretNotFoundError: {
 				Title: "SecretNotFoundError",
-				Message: "Ein Geheimnis mit der ID {{id}} wurde nicht gefunden. Es könnte abgelaufen oder bereits aufgerufen worden sein.",
+				Message: "Ein Geheimnis mit der ID {{id}} wurde nicht gefunden.",
+				Reason: {
+					Burned: "Das Geheimnis wurde bereits am {{timestamp}} aufgerufen und ist nicht mehr verfügbar.",
+					Expired: "Das Geheimnis ist am {{timestamp}} abgelaufen und ist nicht mehr verfügbar.",
+					Deleted: "Das Geheimnis wurde am {{timestamp}} gelöscht und ist nicht mehr verfügbar.",
+				},
 			},
 			SecretAlreadyExistsError: {
 				Title: "SecretAlreadyExistsError",
@@ -220,6 +225,7 @@ export default {
 		ErrorPage: {
 			Title: "Seite nicht gefunden",
 			GoHome: "Zurück zur Startseite",
+			Reason: "Grund: {{reason}}",
 		},
 	},
 } satisfies typeof baseLang

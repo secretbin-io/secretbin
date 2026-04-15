@@ -173,7 +173,12 @@ export default {
 			},
 			SecretNotFoundError: {
 				Title: "SecretNotFoundError",
-				Message: "A secret with the ID {{id}} does not exist. It may have expired or already been accessed.",
+				Message: "A secret with the ID {{id}} does not exist.",
+				Reason: {
+					Burned: "The secret has already been accessed on {{timestamp}} and is no longer available.",
+					Expired: "The secret has expired on {{timestamp}} and is no longer available.",
+					Deleted: "The secret has been deleted on {{timestamp}} and is no longer available.",
+				},
 			},
 			SecretAlreadyExistsError: {
 				Title: "SecretAlreadyExistsError",
@@ -215,6 +220,7 @@ export default {
 		ErrorPage: {
 			Title: "Error",
 			GoHome: "Go back home",
+			Reason: "Reason: {{reason}}",
 		},
 	},
 }

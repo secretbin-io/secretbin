@@ -34,6 +34,15 @@ export function replacePrefix(s: string, prefix: string, replacement: string): s
 }
 
 /**
+ * Capitalize the first letter of a string
+ * @param s String
+ * @returns String with capitalized first letter
+ */
+export function capitalizeFirstLetter(s: string): string {
+	return s.charAt(0).toUpperCase() + s.slice(1)
+}
+
+/**
  * Replace a given suffix from a string with another string
  * @param s String
  * @param suffix Suffix that should be replace
@@ -52,38 +61,7 @@ export function replaceSuffix(s: string, suffix: string, replacement: string): s
  * formatString("Hello, {{name}}!", { name: "John Smith" }) // => "Hello, John Smith!"
  */
 export function format(template: string, params: Record<string, string>): string {
-	let res = ""
-	let v = ""
-	let brackets = 0
-
-	for (const l of template) {
-		switch (l) {
-			case "{": {
-				if (brackets < 0 || brackets > 1) {
-					return template
-				}
-				brackets++
-				break
-			}
-			case "}": {
-				if (brackets < 1 || brackets > 2) {
-					return template
-				}
-				brackets--
-				if (brackets === 0) {
-					res += params[v.trim()] ?? `__INVALID_PARAM__`
-					v = ""
-				}
-				break
-			}
-			default: {
-				if (brackets === 2) {
-					v += l
-				} else {
-					res += l
-				}
-			}
-		}
-	}
-	return res
+	return template.replace(/\{\{(\w+)\}\}/g, (_, key) => {
+		return params[key] ?? `{{ ${key} }}}`
+	})
 }

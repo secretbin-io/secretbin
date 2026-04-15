@@ -8,12 +8,24 @@ import { LocalizedError } from "./localized.ts"
  * Implement a error sub-class for each error
  */
 export class SecretNotFoundError extends LocalizedError {
-	public constructor(public id: string) {
-		super(STATUS_CODE.NotFound, "SecretNotFoundError", { id })
+	public constructor(public id: string, public reason?: string, public timestamp?: Date) {
+		const params: Record<string, string> = { id }
+		if (reason) {
+			params.reason = reason
+		}
+
+		if (timestamp) {
+			params.timestamp = timestamp.toISOString().split("T")[0]
+		}
+		super(STATUS_CODE.NotFound, "SecretNotFoundError", params)
 	}
 
 	public static fromObject(_message: string, params: Record<string, unknown>): Error {
-		return new SecretNotFoundError(params.id as string)
+		return new SecretNotFoundError(
+			params.id as string,
+			params.reason as string,
+			params.timestamp === "none" ? undefined : new Date(params.timestamp as string),
+		)
 	}
 }
 

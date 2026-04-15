@@ -35,15 +35,21 @@ tasks:
     desc: Start the database using docker-compose
     dir: container
     cmds:
-      - docker-compose up -d postgres
+      - docker compose up -d postgres
   db:stop:
     desc: Stop the database using docker-compose
     dir: container
     cmds:
-      - docker-compose stop postgres
+      - docker compose stop postgres
   container:run:
     desc: Run the application using docker-compose
     deps: [snapshot]
     dir: container
     cmds:
-      - docker-compose up secretbin
+      - docker compose up secretbin
+  container:run_x64:
+    desc: Run the application using docker-compose
+    deps: [snapshot]
+    dir: container
+    cmds:
+      - docker compose up secretbin_amd64

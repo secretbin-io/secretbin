@@ -1,4 +1,4 @@
-import { Button, Message, PageContent } from "components"
+import { Button, Message, PageContent, Show } from "components"
 import { HttpError } from "fresh"
 import { define } from "utils"
 import { LocalizedError } from "utils/errors"
@@ -9,11 +9,13 @@ export default define.page(({ state, error }) => {
 
 	let title = "Error"
 	let message = ""
+	let reason = ""
 
 	switch (true) {
 		case error instanceof LocalizedError: {
 			title = error.getTitle(state.language)
 			message = error.getMessage(state.language)
+			reason = error.getReason(state.language) ?? ""
 			break
 		}
 		case error instanceof HttpError && error.status === 404: {
@@ -36,7 +38,10 @@ export default define.page(({ state, error }) => {
 	return (
 		<PageContent title={title}>
 			<Message class="my-2" type="error" largeText>
-				{message}
+				<h3 class="font-bold">{message}</h3>
+				<Show if={reason}>
+					<div class="text-s">{$("Reason", { reason })}</div>
+				</Show>
 			</Message>
 			<Button label={$("GoHome")} link="/" />
 		</PageContent>

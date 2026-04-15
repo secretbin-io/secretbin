@@ -1,7 +1,7 @@
 import { ErrorStatus } from "@std/http/status"
 import { HttpError } from "fresh/runtime"
 import { getTranslation, Language, TranslationKey } from "lang"
-import type { TrimPrefix, TrimSuffix } from "utils/helpers"
+import { strings, type TrimPrefix, type TrimSuffix } from "utils/helpers"
 
 export type ErrorKey = TrimSuffix<"Title", TrimPrefix<"Errors", TranslationKey>>
 
@@ -18,16 +18,17 @@ export class LocalizedError extends HttpError {
 	 * @param key Translation key for the error
 	 * @param params Optional parameters for the translated message
 	 */
-	public constructor(
-		status: ErrorStatus,
-		key: ErrorKey,
-		params: Record<string, string> = {},
-	) {
+	public constructor(status: ErrorStatus, key: ErrorKey, params: Record<string, string> = {}) {
 		super(status, getTranslation(Language.English, `Errors.${key}.Message`, params))
 		this.status = status
 		this.name = key
 		this.#key = key
 		this.#params = params
+
+		const reason = this.getReason(Language.English)
+		if (reason) {
+			this.message += " Reason: " + reason
+		}
 	}
 
 	/**
@@ -76,5 +77,22 @@ export class LocalizedError extends HttpError {
 		} else {
 			return err.message
 		}
+	}
+
+	/**
+	 * Gets the reason for the error if available.
+	 * @param lang Requested language
+	 * @returns Translated reason for the error or undefined if no reason is available
+	 */
+	public getReason(lang: Language): string | undefined {
+		if (!this.#params.reason) {
+			return undefined
+		}
+
+		const reasonKey = `Errors.${this.#key}.Reason.${
+			strings.capitalizeFirstLetter(this.#params.reason)
+		}` as TranslationKey
+
+		return getTranslation(lang, reasonKey, this.#params)
 	}
 }

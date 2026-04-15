@@ -37,17 +37,22 @@ function MessageIcon({ type }: Pick<MessageProps, "type">): ComponentChild {
 /**
  * Creates a message with a title wrapped in a colored box
  */
-export function Message({ title, type = "info", largeText, children, message, ...props }: MessageProps): ComponentChild {
+export function Message(
+	{ title, type = "info", largeText, children, message, ...props }: MessageProps,
+): ComponentChild {
 	if (!message && !children) {
 		return undefined
 	}
 
 	return (
-		<div role="alert" class={clsx("alert alert-soft", {
-			"alert-info": type === "info",
-			"alert-warning": type === "warning",
-			"alert-error": type === "error",
-		}, props.class)}>
+		<div
+			role="alert"
+			class={clsx("alert alert-soft", {
+				"alert-info": type === "info",
+				"alert-warning": type === "warning",
+				"alert-error": type === "error",
+			}, props.class)}
+		>
 			<MessageIcon type={type} />
 			<div>
 				<Show if={title}>

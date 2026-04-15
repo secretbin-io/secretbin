@@ -13,7 +13,7 @@ services:
         source: ./postgres/tls/ca.crt
         target: /etc/postgresql/ca.crt
       - type: bind
-        source: ./postgres/server.crt
+        source: ./postgres/tls/server.crt
         target: /etc/postgresql/server.crt
       - type: bind
         source: ./postgres/tls/server.key
@@ -34,6 +34,33 @@ services:
     image: ghcr.io/secretbin-io/secretbin:latest-arm64
     container_name: secretbin
     read_only: true
+    platform: linux/arm64
+    ports:
+      - "8001:8000"
+    command: ["-unsafely-ignore-certificate-errors"]
+    volumes:
+      - type: bind
+        source: ../config.yaml
+        target: /app/config.yaml
+      - type: bind
+        source: ../config.db.yaml
+        target: /app/config.db.yaml
+      - type: bind
+        source: ../resources
+        target: /app/resources
+      - type: bind
+        source: ../public
+        target: /app/public
+    extra_hosts:
+      - "postgres:host-gateway"
+    networks:
+      - secretbin
+
+  secretbin_amd64:
+    image: ghcr.io/secretbin-io/secretbin:latest-amd64
+    container_name: secretbin_amd64
+    read_only: true
+    platform: linux/amd64
     ports:
       - "8001:8000"
     volumes:

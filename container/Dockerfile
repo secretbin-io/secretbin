@@ -15,8 +15,8 @@ COPY --from=certs /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certifica
 
 # Inspired by https://github.com/dojyorin/deno_docker_image/blob/master/src/alpine.dockerfile
 COPY --from=cc --chown=root:root --chmod=755 /lib/*-linux-gnu/* /usr/local/lib/
-COPY --from=cc --chown=root:root --chmod=755 /lib/ld-linux-* /lib/
-COPY --from=cc --chown=root:root --chmod=755 /lib6?/ld-linux-* /lib64/
+COPY --from=cc --chown=root:root --chmod=755 /lib/*-linux-gnu/ld-linux-* /lib/
+COPY --from=cc --chown=root:root --chmod=755 /lib/*-linux-gnu/ld-linux-* /lib64/
 ENV LD_LIBRARY_PATH="/usr/local/lib"
 
 # Use an unprivileged user.

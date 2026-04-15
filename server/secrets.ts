@@ -161,6 +161,7 @@ export class Secrets {
 	async getSecret(id: string): Promise<Secret> {
 		const s = await this.#db.secrets.get(id)
 			.then(this.#removeIfInvalid())
+			.catch((err) => this.#resolveNotFound<Secret>(id, err))
 
 		logSecrets.info(`Secret #${id} was opened.`, { action: "get", id })
 		await this.#db.events.emit(id, EventType.Read)
@@ -181,7 +182,9 @@ export class Secrets {
 	 * @returns Secret metadata
 	 */
 	getSecretMetadata(id: string): Promise<SecretMetadata> {
-		return this.#db.secrets.getMetadata(id).then(this.#removeIfInvalid())
+		return this.#db.secrets.getMetadata(id)
+			.then(this.#removeIfInvalid())
+			.catch((err) => this.#resolveNotFound<SecretMetadata>(id, err))
 	}
 
 	/**
@@ -247,5 +250,21 @@ export class Secrets {
 		} catch (err) {
 			throw err
 		}
+	}
+
+	/**
+	 * Resolves a not found error for a secret by checking if the secret is expired or burned. If it is, a more specific error is thrown. If not, the original error is thrown.
+	 * @param id Secret ID
+	 * @param err Error that occurred
+	 */
+	async #resolveNotFound<T>(id: string, err: unknown): Promise<T> {
+		if (err instanceof SecretNotFoundError) {
+			const event = (await Array.fromAsync(this.#db.events.getForSecret(id)).catch(() => []))
+				.find((e) => e.type === EventType.Expired || e.type === EventType.Burned)
+			if (event) {
+				throw new SecretNotFoundError(id, event.type, event.timestamp)
+			}
+		}
+		throw err
 	}
 }
