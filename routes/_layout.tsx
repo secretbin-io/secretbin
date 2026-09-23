@@ -36,7 +36,7 @@ export default define.layout(({ state, Component }) => {
 				{/* Show banner e.g. for planned maintenance message if configured */}
 				{state.config.banner.enabled && (
 					<div class="mx-auto">
-						<div class="mx-auto flex max-w-screen-md flex-col items-center justify-center">
+						<div class="mx-auto flex max-w-3xl flex-col items-center justify-center">
 							<div class="w-full p-4">
 								<Message
 									type={state.config.banner.type}
@@ -52,7 +52,7 @@ export default define.layout(({ state, Component }) => {
 				{/* Show warning if browser is not supported */}
 				{!state.supportedBrowser && (
 					<div class="mx-auto">
-						<div class="mx-auto flex max-w-screen-md flex-col items-center justify-center">
+						<div class="mx-auto flex max-w-3xl flex-col items-center justify-center">
 							<div class="w-full p-4">
 								<Message
 									type="warning"

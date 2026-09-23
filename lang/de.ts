@@ -135,7 +135,9 @@ export default {
 			DecryptionError:
 				"Das Geheimnis konnte nicht entschlüsselt werden. Dies kann z.B. an einem falschen Passwort liegen. Bitte versuche es erneut.\n",
 			Decrypting: "Geheimnis wird entschlüsselt",
+			Preparing: "Download wird vorbereitet",
 			Delete: "Geheimnis löschen",
+			DownloadAll: "Alle Dateien Herunterladen",
 		},
 		DeleteSecret: {
 			Title: "Geheimnis löschen",
@@ -149,7 +151,9 @@ export default {
 				'SecretBin ist von <a href="https://privatebin.info">PrivateBin</a> inspiriert. PrivateBin wurde unter anderem von <a href="https://github.com/PrivateBin/PrivateBin/graphs/contributors">El RIDO</a> entwickelt entwickelt und unter der <a href="https://github.com/PrivateBin/PrivateBin/blob/master/LICENSE.md">Zlib Lizenz</a> veröffentlicht.',
 			BrandedNotice: "{{name}} basiert auf SecretBin, das von Marvin Peter entwickelt wird.",
 			SourceNotice:
-				'SecretBin ist Open Source und steht unter MIT-Lizenz zur Verfügung. Wenn du deine eigene Version von SecretBin hosten möchtest, findest du den Quellcode auf <a href="https://github.com/secretbin-io/secretbin">GitHub</a>.',
+				'SecretBin ist Open Source und steht unter MIT-Lizenz zur Verfügung. Wenn du deine eigene Version von SecretBin hosten möchtest, findest du den Quellcode im <a href="https://source.secretbin.io">Git Repository</a>.',
+			AutomationNotice:
+				'Zur Automatisierung stellt SecretBin einen <a href="https://cli-source.secretbin.io">CLI Client</a>, ein <a href="https://python-source.secretbin.io">Python Module</a> sowie ein <a href="https://go-source.secretbin.io">Go Module</a> zur Verfügung.',
 			Components: {
 				Title: "Komponenten",
 				Description:
@@ -160,6 +164,11 @@ export default {
 					License: "Lizenz",
 					Version: "Version",
 				},
+			},
+			AIDisclosure: {
+				Title: "KI-Offenlegung",
+				Description:
+					"SecretBin enthält einen minimalen Anteil an Code und Dokumentation (weniger als 10 %), der von Gemini und Copilot generiert wurde. Es wurde keine agentische KI eingesetzt, und alle KI-generierten Beiträge wurden von mir persönlich überprüft. Seit Version 2.4.0 wurden keine zusätzlichen KI-generierten Code im Entwicklungsprozess verwendet. Dies bezieht sich ausschließlich auf meine eigene Codebasis und gilt nicht zwangsläufig für genutzte Drittanbieter-Pakete.",
 			},
 		},
 		TermsOfService: {

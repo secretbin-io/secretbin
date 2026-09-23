@@ -9,10 +9,10 @@ branding:
   footer: SecretBin # Text shown in the footer on the left side e.g. the name of the service hoster
   links: # Custom link shown in the footer on the right
     - name: # Localized display text
-        en: GitHub
-        de: GitHub
+        en: Source Code
+        de: Quellcode
       link:
-        en: https://github.com/secretbin-io/secretbin # URL
+        en: https://source.secretbin.io # URL
   showLogo: true # If set the true, the app logo is shown before the app name in the navigation bar
   invertLogo: false # Invert the colors of the app logo in dark mode
   terms: # ToS Dialog show when the user first visits the app (if terms is not specified no dialog is shown)

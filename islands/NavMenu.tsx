@@ -38,7 +38,7 @@ export function NavMenu({ state }: NavMenuProps): ComponentChild {
 			<ul class="menu menu-horizontal px-1">
 				<li>
 					<Button
-						class="!me-0 !mb-0 justify-center !px-4 !py-2"
+						class="me-0! mb-0! justify-center px-4! py-2!"
 						theme="clear"
 						icon={theme === Theme.Dark ? SunIcon : MoonIcon}
 						onClick={() => setTheme(theme === Theme.Dark ? Theme.Light : Theme.Dark)}

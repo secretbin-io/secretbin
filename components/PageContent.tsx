@@ -17,7 +17,7 @@ export interface PageContentProps extends BaseProps {
  */
 export function PageContent({ title, description, children, ...props }: PageContentProps): ComponentChild {
 	return (
-		<div class={clsx("mx-auto flex max-w-screen-md flex-col items-center justify-center", props.class)}>
+		<div class={clsx("mx-auto flex max-w-3xl flex-col items-center justify-center", props.class)}>
 			<div class="w-full p-4">
 				<h5 class="mb-2 font-bold text-3xl">
 					{title}

@@ -1,5 +1,6 @@
-import { TrashIcon } from "@heroicons/react/24/outline"
+import { ArchiveBoxArrowDownIcon, TrashIcon } from "@heroicons/react/24/outline"
 import { clsx } from "@nick/clsx"
+import { BlobWriter, ZipWriter } from "@zip-js/zip-js"
 import { decryptSecret, getSecret } from "client"
 import { Button, FileList, Input, Message, Section, Spinner, TextArea } from "components"
 import { Secret } from "models"
@@ -8,6 +9,7 @@ import { useEffect, useState } from "preact/hooks"
 import { LocalizedError } from "utils/errors"
 import { useTranslation } from "utils/hooks"
 import { State } from "utils/state"
+import { downloadBlob } from "../utils/helpers/files.ts"
 
 export interface ViewSecretProps {
 	state: State
@@ -38,6 +40,7 @@ export function ViewSecret({ id, state, remainingReads, passwordProtected }: Vie
 	const [secret, setSecret] = useState<Secret | undefined>(undefined)
 	const [secretContent, setSecretContent] = useState<[string, File[]] | undefined>(undefined)
 	const [loading, setLoading] = useState(false)
+	const [preparing, setPreparing] = useState(false)
 	const [showDelete, setShowDelete] = useState(false)
 
 	const $ = useTranslation(state.language, "ViewSecret")
@@ -93,10 +96,33 @@ export function ViewSecret({ id, state, remainingReads, passwordProtected }: Vie
 		}
 	}
 
+	const downloadAll = async () => {
+		setPreparing(true)
+
+		// Creates a BlobWriter object where the zip content will be written.
+		const zipFileWriter = new BlobWriter()
+
+		// Creates a ZipWriter object writing data via `zipFileWriter`, adds an
+		// entry for all files and closes the writer.
+		const zipWriter = new ZipWriter(zipFileWriter)
+		for (const f of secretContent?.[1] ?? []) {
+			await zipWriter.add(f.name, f.stream())
+		}
+
+		await zipWriter.close()
+
+		// Retrieves the Blob object containing the zip content and download it.
+		const zipFileBlob = await zipFileWriter.getData()
+		downloadBlob(zipFileBlob, "archive.zip")
+
+		setPreparing(false)
+	}
+
 	return (
 		<>
 			<Spinner label={$("Decrypting")} hidden={!loading} />
-			<div class={clsx({ "hidden": loading })}>
+			<Spinner label={$("Preparing")} hidden={!preparing} />
+			<div class={clsx({ "hidden": loading || preparing })}>
 				{requireConfirm && (
 					<>
 						<p>{$("ReadConfirm")}</p>
@@ -122,7 +148,7 @@ export function ViewSecret({ id, state, remainingReads, passwordProtected }: Vie
 								setRequirePassword(false)}
 						/>
 						{passwordInvalid && (
-							<p class="text-red-600 dark:text-red-500">
+							<p class="text-red-600">
 								{$("DecryptionError")}
 							</p>
 						)}
@@ -132,19 +158,27 @@ export function ViewSecret({ id, state, remainingReads, passwordProtected }: Vie
 				{!!secretContent && (
 					<>
 						<TextArea class="mb-2 resize-none" lines={15} readOnly value={secretContent?.[0]} />
-						{!showDelete && (
-							<Button
-								class="float-right"
-								label={$("Delete")}
-								icon={TrashIcon}
-								link={`/secret/${id}/delete`}
-							/>
-						)}
 						{((secretContent?.[1] ?? []).length !== 0) && (
 							<FileList
 								title={$("Files.Title")}
 								files={secretContent?.[1] ?? []}
 								downloadable
+							/>
+						)}
+						{(secretContent?.[1] ?? []).length > 1 && (
+							<Button
+								class="float-right mt-2 ml-2"
+								label={$("Delete")}
+								icon={TrashIcon}
+								link={`/secret/${id}/delete`}
+							/>
+						)}
+						{!showDelete && (
+							<Button
+								class="float-right mt-2 mr-2"
+								label={$("DownloadAll")}
+								icon={ArchiveBoxArrowDownIcon}
+								onClick={() => downloadAll()}
 							/>
 						)}
 					</>

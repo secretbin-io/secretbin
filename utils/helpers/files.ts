@@ -46,10 +46,19 @@ export function downloadDataURL(url: string, filename: string): void {
  * @param f File to download
  */
 export function downloadFile(f: File): void {
-	// Creates a download URL for the blob
-	const objectURL = URL.createObjectURL(f)
+	return downloadBlob(f, f.name)
+}
 
-	downloadDataURL(objectURL, f.name)
+/**
+ * Downloads a given blob in the browser
+ * @param blob Blob to download
+ * @param fileName File name of the download
+ */
+export function downloadBlob(blob: Blob, fileName: string): void {
+	// Creates a download URL for the blob
+	const objectURL = URL.createObjectURL(blob)
+
+	downloadDataURL(objectURL, fileName)
 
 	// Cleanup object URL and link after download
 	setTimeout(() => {

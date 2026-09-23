@@ -51,9 +51,9 @@
     "registry": "npm",
     "name": "@heroicons/react",
     "repository": "https://github.com/tailwindlabs/heroicons",
-    "author": "Tailwind Labs",
+    "author": "Tailwind Labs, Inc.",
     "license": "MIT License",
-    "licenseFile": "https://raw.githubusercontent.com/tailwindlabs/heroicons/master/LICENSE"
+    "licenseFile": "https://raw.githubusercontent.com/tailwindlabs/heroicons/refs/heads/master/LICENSE"
   },
   {
     "registry": "jsr",
@@ -120,14 +120,6 @@
   },
   {
     "registry": "npm",
-    "name": "source-map-js",
-    "repository": "https://github.com/7rulnik/source-map-js",
-    "author": "Valentin Semirulnik",
-    "license": "3-Clause BSD License",
-    "licenseFile": "https://raw.githubusercontent.com/7rulnik/source-map-js/patch-0.6.1/LICENSE"
-  },
-  {
-    "registry": "npm",
     "name": "tailwindcss",
     "repository": "https://github.com/tailwindlabs/tailwindcss",
     "author": "Tailwind Labs, Inc.",
@@ -149,6 +141,14 @@
     "author": "Vite",
     "license": "MIT License",
     "licenseFile": "https://raw.githubusercontent.com/vitejs/vite/main/LICENSE"
+  },
+  {
+    "registry": "jsr",
+    "name": "@zip-js/zip-js",
+    "repository": "https://github.com/gildas-lormeau/zip.js",
+    "author": "Gildas",
+    "license": "BSD 3-Clause \"New\" or \"Revised\" License",
+    "licenseFile": "https://raw.githubusercontent.com/gildas-lormeau/zip.js/master/LICENSE"
   },
   {
     "registry": "jsr",

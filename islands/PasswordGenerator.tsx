@@ -57,7 +57,7 @@ export function PasswordGenerator({ dialogRef, onDismiss, onPassword, state }: P
 			<Section title={$("Title")} description={$("Description")}>
 				<div class="join w-full">
 					<Input class="join-item" readOnly value={password} />
-					<Button class="join-item !mb-0" label={$("Generate")} onClick={onGenerate} />
+					<Button class="join-item mb-0!" label={$("Generate")} onClick={onGenerate} />
 				</div>
 			</Section>
 			<Section title={$("Length.Title")} description={$("Length.Description")}>
