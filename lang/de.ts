@@ -168,7 +168,7 @@ export default {
 			AIDisclosure: {
 				Title: "KI-Offenlegung",
 				Description:
-					"SecretBin enthält einen minimalen Anteil an Code und Dokumentation (weniger als 10 %), der von Gemini und Copilot generiert wurde. Es wurde keine agentische KI eingesetzt, und alle KI-generierten Beiträge wurden von mir persönlich überprüft. Seit Version 2.4.0 wurden keine zusätzlichen KI-generierten Code im Entwicklungsprozess verwendet. Dies bezieht sich ausschließlich auf meine eigene Codebasis und gilt nicht zwangsläufig für genutzte Drittanbieter-Pakete.",
+					"SecretBin enthält einen minimalen Anteil an Code und Dokumentation (weniger als 10 %), der von Gemini und Copilot generiert wurde. Es wurde keine agentische KI eingesetzt, und alle KI-generierten Beiträge wurden von mir persönlich überprüft. Seit Version 2.4.0 wurde kein zusätzlicher KI-generierter Code im Entwicklungsprozess verwendet. Dies bezieht sich ausschließlich auf meine eigene Codebasis und gilt nicht zwangsläufig für genutzte Drittanbieter-Pakete.",
 			},
 		},
 		TermsOfService: {
