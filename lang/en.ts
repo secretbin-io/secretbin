@@ -147,9 +147,8 @@ export default {
 				'SecretBin is inspired by <a href="https://privatebin.info">PrivateBin</a>, developed by <a href="https://github.com/PrivateBin/PrivateBin/graphs/contributors">El RIDO</a> among others and released under the <a href="https://github.com/PrivateBin/PrivateBin/blob/master/LICENSE.md">Zlib License</a>.',
 			BrandedNotice: "{{name}} is based on SecretBin, developed by Marvin Peter.",
 			SourceNotice:
-				'SecretBin is open source and available under the MIT license. If you want to host your own version of SecretBin, head over to the <a href="https://source.secretbin.io">Git repository</a>.',
-			AutomationNotice:
-				'SecretBin offers a <a href="https://cli-source.secretbin.io">CLI client</a>, a <a href="https://python-source.secretbin.io">Python module</a> and a <a href="https://go-source.secretbin.io">Go module</a> for automation purposes.',
+				'SecretBin is open source and available under the MIT license. If you want to host your own version of SecretBin, head over to the <a href="https://github.com/secretbin-io/secretbin">GitHub</a>.',
+			AutomationNotice: "For automation, the following clients are also available:",
 			Components: {
 				Title: "Components",
 				Description:

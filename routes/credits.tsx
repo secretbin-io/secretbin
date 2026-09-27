@@ -27,6 +27,18 @@ export default define.page(({ state }) => {
 
 			<Text name="AutomationNotice" />
 
+			<ul class="pl-10 -mt-2 list-disc [&_a]:underline mb-5">
+				<li>
+					<a href="https://github.com/secretbin-io/secretbin-cli">SecretBin CLI</a>
+				</li>
+				<li>
+					<a href="https://github.com/secretbin-io/secretbin-python">SecretBin Python</a>
+				</li>
+				<li>
+					<a href="https://github.com/secretbin-io/go-secretbin">SecretBin Go</a>
+				</li>
+			</ul>
+
 			<Text name="Description" />
 
 			<div class="relative overflow-x-auto">

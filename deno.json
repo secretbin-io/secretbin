@@ -1,5 +1,5 @@
 {
-	"version": "2.5.1",
+	"version": "2.5.2",
 	"tasks": {
 		"check": {
 			"description": "Lints and types check TypeScript files",

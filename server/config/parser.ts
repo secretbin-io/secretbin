@@ -52,7 +52,7 @@ export const ConfigModel: ZodType<Config> = z.strictObject({
 			link: TranslatedString,
 		}).array().default([{
 			name: { en: "Source Code", de: "Quellcode" },
-			link: { en: "https://source.secretbin.io" },
+			link: { en: "https://github.com/secretbin-io/secretbin" },
 		}]),
 		showLogo: BooleanLike.default(true),
 		invertLogo: BooleanLike.default(false),

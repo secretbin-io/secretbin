@@ -12,7 +12,7 @@ branding:
         en: Source Code
         de: Quellcode
       link:
-        en: https://source.secretbin.io # URL
+        en: https://github.com/secretbin-io/secretbin # URL
   showLogo: true # If set the true, the app logo is shown before the app name in the navigation bar
   invertLogo: false # Invert the colors of the app logo in dark mode
   terms: # ToS Dialog show when the user first visits the app (if terms is not specified no dialog is shown)
