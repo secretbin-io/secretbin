@@ -7,9 +7,9 @@ import { Secret } from "models"
 import { ComponentChild } from "preact"
 import { useEffect, useState } from "preact/hooks"
 import { LocalizedError } from "utils/errors"
+import { downloadBlob } from "utils/helpers"
 import { useTranslation } from "utils/hooks"
 import { State } from "utils/state"
-import { downloadBlob } from "../utils/helpers/files.ts"
 
 export interface ViewSecretProps {
 	state: State
