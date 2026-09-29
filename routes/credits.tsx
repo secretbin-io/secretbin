@@ -21,7 +21,7 @@ function Text({ state, text }: TextProps): ComponentChildren {
 
 	return (
 		<p
-			class="text-justify [&_a]:underline mb-5"
+			class="text-justify [&_a]:text-warning mb-5"
 			// deno-lint-ignore react-no-danger
 			dangerouslySetInnerHTML={{ __html: $(text, { name: state.config.branding.appName }) }}
 		/>
@@ -62,7 +62,7 @@ export default define.page(({ state }) => {
 
 			<Text state={state} text="AutomationNotice" />
 
-			<ul class="pl-10 -mt-2 list-disc [&_a]:underline mb-5">
+			<ul class="pl-10 -mt-2 list-disc [&_a]:text-warning mb-5">
 				<li>
 					<a href="https://github.com/secretbin-io/secretbin-cli">SecretBin CLI</a>
 				</li>
